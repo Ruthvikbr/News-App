@@ -1,6 +1,6 @@
-package com.ruthvikbr.newsapp.ui.api
+package com.ruthvikbr.newsapp.api
 
-import com.ruthvikbr.newsapp.ui.util.Constants.BASE_URL
+import com.ruthvikbr.newsapp.util.Constants.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

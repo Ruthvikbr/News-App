@@ -1,4 +1,4 @@
-package com.ruthvikbr.newsapp.ui
+package com.ruthvikbr.newsapp.models
 
 data class Source(
     val id: Any,

@@ -1,7 +1,7 @@
-package com.ruthvikbr.newsapp.ui.api
+package com.ruthvikbr.newsapp.api
 
-import com.ruthvikbr.newsapp.ui.NewsResponse
-import com.ruthvikbr.newsapp.ui.util.Constants.API_KEY
+import com.ruthvikbr.newsapp.models.NewsResponse
+import com.ruthvikbr.newsapp.util.Constants.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

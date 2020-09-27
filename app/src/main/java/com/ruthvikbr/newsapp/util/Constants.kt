@@ -1,4 +1,4 @@
-package com.ruthvikbr.newsapp.ui.util
+package com.ruthvikbr.newsapp.util
 
 import android.content.res.Resources
 import com.ruthvikbr.newsapp.R

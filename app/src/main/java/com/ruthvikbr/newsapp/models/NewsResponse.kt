@@ -1,4 +1,4 @@
-package com.ruthvikbr.newsapp.ui
+package com.ruthvikbr.newsapp.models
 
 data class NewsResponse(
     val articles: List<Article>,
