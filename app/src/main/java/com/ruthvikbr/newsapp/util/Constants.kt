@@ -5,6 +5,6 @@ import com.ruthvikbr.newsapp.R
 
 
 object Constants {
-    val API_KEY = Resources.getSystem().getString(R.string.NEWS_API_KEY)
+    const val API_KEY = "YOUR_API_KEY_HERE"
     const val BASE_URL = "https://newsapi.org"
 }
