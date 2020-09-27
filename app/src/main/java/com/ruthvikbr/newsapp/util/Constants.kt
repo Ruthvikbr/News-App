@@ -1,10 +1,7 @@
 package com.ruthvikbr.newsapp.util
 
-import android.content.res.Resources
-import com.ruthvikbr.newsapp.R
-
-
 object Constants {
     const val API_KEY = "YOUR_API_KEY_HERE"
     const val BASE_URL = "https://newsapi.org"
+    const val SEARCH_NEWS_TIME_DELAY = 500L
 }
