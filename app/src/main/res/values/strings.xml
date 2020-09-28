@@ -3,4 +3,5 @@
     <string name="search_news">Search News</string>
     <string name="saved_news">Saved News</string>
     <string name="breaking_news">Breaking News</string>
+    <string name="articleImage">ArticleImage</string>
 </resources>

@@ -18,7 +18,11 @@
     <fragment
         android:id="@+id/articleFragment"
         android:name="com.ruthvikbr.newsapp.ui.fragments.ArticleFragment"
-        android:label="ArticleFragment" />
+        android:label="ArticleFragment" >
+        <argument
+            android:name="article"
+            app:argType="com.ruthvikbr.newsapp.models.Article" />
+    </fragment>
     <fragment
         android:id="@+id/savedNewsFragment"
         android:name="com.ruthvikbr.newsapp.ui.fragments.SavedNewsFragment"
