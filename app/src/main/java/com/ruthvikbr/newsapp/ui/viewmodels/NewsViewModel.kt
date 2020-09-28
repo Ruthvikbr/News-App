@@ -14,14 +14,17 @@ import retrofit2.Response
 class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel() {
     val breakingNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var breakingNewsPage = 1
+    var breakingNewsResponse: NewsResponse? = null
+
     val searchNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
-    var searchPage = 1
+    var searchNewsPage = 1
+    var searchNewsResponse: NewsResponse? = null
 
     init {
         getBreakingNews("us")
     }
 
-    private fun getBreakingNews(countryCode: String) {
+     fun getBreakingNews(countryCode: String) {
         viewModelScope.launch {
             breakingNews.postValue(Resource.Loading())
             val response =
@@ -35,7 +38,7 @@ class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel() {
         viewModelScope.launch {
             searchNews.postValue(Resource.Loading())
             val response =
-                newsRepository.getSearchResults(searchQuery,searchPage)
+                newsRepository.getSearchResults(searchQuery, searchNewsPage)
             searchNews.postValue(handleSearchNewsResponse(response))
         }
     }
@@ -45,7 +48,15 @@ class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel() {
     ): Resource<NewsResponse> {
         if (response.isSuccessful) {
             response.body()?.let {
-                return Resource.Success(it)
+                breakingNewsPage++
+                if(breakingNewsResponse == null){
+                    breakingNewsResponse = it
+                } else{
+                    val oldArticles = breakingNewsResponse?.articles
+                    val newArticles = it.articles
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resource.Success(breakingNewsResponse ?: it)
             }
         }
         return Resource.Error(response.message())
@@ -56,13 +67,21 @@ class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel() {
     ): Resource<NewsResponse> {
         if (response.isSuccessful) {
             response.body()?.let {
-                return Resource.Success(it)
+                searchNewsPage++
+                if(searchNewsResponse == null){
+                    searchNewsResponse = it
+                } else{
+                    val oldArticles = searchNewsResponse?.articles
+                    val newArticles = it.articles
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resource.Success(searchNewsResponse ?: it)
             }
         }
         return Resource.Error(response.message())
     }
 
-    fun saveArticle(article: Article){
+    fun saveArticle(article: Article) {
         viewModelScope.launch {
             newsRepository.insert(article)
         }
