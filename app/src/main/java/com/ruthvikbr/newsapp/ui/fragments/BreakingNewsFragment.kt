@@ -11,6 +11,7 @@ import com.ruthvikbr.newsapp.adapters.NewsAdapter
 import com.ruthvikbr.newsapp.ui.NewsActivity
 import com.ruthvikbr.newsapp.ui.viewmodels.NewsViewModel
 import com.ruthvikbr.newsapp.util.Resource
+
 import kotlinx.android.synthetic.main.fragment_breaking_news.*
 
 class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {

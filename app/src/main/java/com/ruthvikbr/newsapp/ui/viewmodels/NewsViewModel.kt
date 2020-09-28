@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 
 import com.ruthvikbr.newsapp.db.NewsRepository
+import com.ruthvikbr.newsapp.models.Article
 import com.ruthvikbr.newsapp.models.NewsResponse
 import com.ruthvikbr.newsapp.util.Resource
 import kotlinx.coroutines.launch
@@ -60,4 +61,17 @@ class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel() {
         }
         return Resource.Error(response.message())
     }
+
+    fun saveArticle(article: Article){
+        viewModelScope.launch {
+            newsRepository.insert(article)
+        }
+    }
+
+    fun getSavedNews() = newsRepository.getSavedNews()
+
+    fun deleteArticle(article: Article) = viewModelScope.launch {
+        newsRepository.delete(article)
+    }
+
 }

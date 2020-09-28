@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.ruthvikbr.newsapp.R
 import com.ruthvikbr.newsapp.models.Article
 import com.ruthvikbr.newsapp.ui.NewsActivity
@@ -20,6 +21,12 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         viewModel = (activity as NewsActivity).viewModel
         val article = args.article
         setupView(article)
+
+        fab.setOnClickListener{
+            viewModel.saveArticle(article)
+            Snackbar.make(view,"Article saved",Snackbar.LENGTH_SHORT).show()
+        }
+
     }
 
     private fun setupView(article: Article){
