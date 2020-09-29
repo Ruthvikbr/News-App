@@ -6,16 +6,17 @@ import android.view.View
 import android.widget.AbsListView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ruthvikbr.newsapp.R
 import com.ruthvikbr.newsapp.adapters.NewsAdapter
-import com.ruthvikbr.newsapp.ui.NewsActivity
 import com.ruthvikbr.newsapp.ui.viewmodels.NewsViewModel
 import com.ruthvikbr.newsapp.util.Constants
 import com.ruthvikbr.newsapp.util.Constants.SEARCH_NEWS_TIME_DELAY
 import com.ruthvikbr.newsapp.util.Resource
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_breaking_news.*
 
 import kotlinx.android.synthetic.main.fragment_search_news.*
@@ -25,16 +26,16 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
 
-    lateinit var viewModel: NewsViewModel
+    private val viewModel: NewsViewModel by viewModels()
     private val TAG = "SearchNewsFragment"
     lateinit var newsAdapter: NewsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as NewsActivity).viewModel
+
         setupRecyclerView()
 
         newsAdapter.setOnItemClickListener {

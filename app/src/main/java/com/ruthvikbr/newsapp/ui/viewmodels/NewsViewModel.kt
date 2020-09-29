@@ -1,5 +1,6 @@
 package com.ruthvikbr.newsapp.ui.viewmodels
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +12,7 @@ import com.ruthvikbr.newsapp.util.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel() {
+class NewsViewModel @ViewModelInject constructor(private val newsRepository: NewsRepository) : ViewModel() {
     val breakingNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var breakingNewsPage = 1
     var breakingNewsResponse: NewsResponse? = null

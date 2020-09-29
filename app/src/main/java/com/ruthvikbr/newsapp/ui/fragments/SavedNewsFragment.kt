@@ -3,6 +3,7 @@ package com.ruthvikbr.newsapp.ui.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,17 +11,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.ruthvikbr.newsapp.R
 import com.ruthvikbr.newsapp.adapters.NewsAdapter
-import com.ruthvikbr.newsapp.ui.NewsActivity
 import com.ruthvikbr.newsapp.ui.viewmodels.NewsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_saved_news.*
 
+@AndroidEntryPoint
 class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
-    lateinit var viewModel: NewsViewModel
+    private val viewModel: NewsViewModel by viewModels()
     lateinit var newsAdapter: NewsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
 
         newsAdapter.setOnItemClickListener {
